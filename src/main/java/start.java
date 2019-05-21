@@ -1,8 +1,7 @@
 import dbmanagement.DBconnection;
 import login.Registration;
+import user.UserProfile;
 import vendor.OfferCreate;
-
-import java.util.HashSet;
 
 public class start {
 
@@ -13,5 +12,6 @@ public class start {
         System.out.println(reg.registration());
         OfferCreate off = new OfferCreate();
         off.createOffer();
+        new UserProfile().addVendor(1,10001);
     }
 }
