@@ -39,4 +39,35 @@ public class UserProfile {
         }
         return false;
     }
+
+    public boolean removeVendor(int usid, int venid) {
+        HashSet<Integer> set = new HashSet<>();
+        String resSelect;
+        try (Statement reg = DBconnection.db.createStatement()) {
+            String bdSelect = "SELECT vendors FROM users WHERE id=" + usid + ";";
+            ResultSet res = reg.executeQuery(bdSelect);
+            res.next();
+            resSelect = res.getString(1);
+            if (resSelect != null) {
+                Pattern pat = Pattern.compile("[0-9]+");
+                Matcher mat = pat.matcher(resSelect);
+                while (mat.find()) {
+                    set.add(Integer.valueOf(mat.group()));
+                    set.remove(venid);
+                }
+            } else {
+                return true;
+            }
+            String bdUpdate = "UPDATE users SET vendors='" + set + "' WHERE id = " + usid + ";";
+            reg.executeQuery(bdUpdate);
+        } catch (SQLException e) {
+            if (e.getMessage().equals("Запрос не вернул результатов.")) {
+                System.out.println("Vendor удален");
+                return true;
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
 }

@@ -13,5 +13,6 @@ public class start {
         OfferCreate off = new OfferCreate();
         off.createOffer();
         new UserProfile().addVendor(1,10001);
+        new UserProfile().removeVendor(1,10001);
     }
 }
