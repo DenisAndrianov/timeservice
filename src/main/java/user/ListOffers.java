@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class ListOffers {
 
-    boolean listOffers ()  {
+/*    boolean listOffers ()  {
         String bdSelect = "SELECT INTO offer (vendors, note, timestart, timeend) " +
                 "VALUES ('"+vendorId+"', '"+node+"' ,'"+start+"', '"+end+"');";
         System.out.println(bdInsert);
@@ -21,5 +21,5 @@ public class ListOffers {
             return false;
         }
         return false;
-    }
+    }*/
 }
