@@ -7,12 +7,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 
 public class OfferCreate {
-    Timestamp start = new Timestamp(System.currentTimeMillis());
-    Timestamp end = new Timestamp(System.currentTimeMillis()+600000);
-    String node = "123 йцукен qwerty";
-    int vendorId = 1;
 
-    public boolean createOffer() {
+    public boolean createOffer(Timestamp start, Timestamp end, String node, int vendorId) {
         String bdInsert = "INSERT INTO offer (vendors, note, timestart, timeend) " +
                 "VALUES ('" + vendorId + "', '" + node + "' ,'" + start + "', '" + end + "');";
         System.out.println(bdInsert);

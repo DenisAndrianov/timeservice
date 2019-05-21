@@ -5,16 +5,10 @@ import dbmanagement.DBconnection;
 import java.sql.*;
 
 public class Registration {
-    String firstname = "Odin";
-    String lastname = "Dva";
-    boolean role;
-    String login = "AdMiN";
-    String pass = "123312asdSdq";
-
-    public boolean registration ()   {
+    public boolean registration (String fn, String ln, boolean role, String login, String pass)   {
         String lowerCaselog = login.toLowerCase();
         String bdInsert = "INSERT INTO users (firstname, lastname, role, login, pass) " +
-                "VALUES ('"+firstname+"', '"+lastname+"' ,'"+role+"' ,'"+lowerCaselog+"' ,'"+pass+"');";
+                "VALUES ('"+fn+"', '"+ln+"' ,'"+role+"' ,'"+lowerCaselog+"' ,'"+pass+"');";
         System.out.println(bdInsert);
         try (Statement reg = DBconnection.db.createStatement();){
             reg.executeQuery(bdInsert);
