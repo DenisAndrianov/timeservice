@@ -1,7 +1,6 @@
 package components;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Timestamp;
 
 @Entity
@@ -17,16 +16,15 @@ public class Offer {
 
     private String note;
 
-    private Timestamp timeStart;
+    private Long timeStart;
 
-    private Timestamp timeEnd;
+    private Long timeEnd;
 
     public Offer() {
     }
 
-    public Offer(User owner, User sign, String note, Timestamp timeStart, Timestamp timeEnd) {
+    public Offer(User owner, String note, Long timeStart, Long timeEnd) {
         this.owner = owner;
-        this.sign = sign;
         this.note = note;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
@@ -64,19 +62,4 @@ public class Offer {
         this.note = note;
     }
 
-    public Timestamp getTimeStart() {
-        return timeStart;
-    }
-
-    public void setTimeStart(Timestamp timeStart) {
-        this.timeStart = timeStart;
-    }
-
-    public Timestamp getTimeEnd() {
-        return timeEnd;
-    }
-
-    public void setTimeEnd(Timestamp timeEnd) {
-        this.timeEnd = timeEnd;
-    }
 }

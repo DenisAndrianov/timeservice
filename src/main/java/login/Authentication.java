@@ -22,12 +22,12 @@ public class Authentication {
         }
     }
 
-    public static String decodeTokenToUserId (String token) {
+    public static Integer decodeTokenToUserId (String token) {
         try {
             DecodedJWT t = verifier.verify(token);
-            return t.getIssuer();
+            return Integer.valueOf(t.getIssuer());
         } catch (Exception e)   {
-            return "error";
+            return -1;
         }
     }
 }

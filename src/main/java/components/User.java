@@ -3,6 +3,7 @@ package components;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -24,11 +25,11 @@ public class User {
 
     private Boolean vendorFlag;
     @OneToMany
-    List<User> vendors;
+    Set<User> vendors;
     @OneToMany
-    List<Offer> offers;
+    Set<Offer> offers;
     @OneToMany
-    List<Offer> signs;
+    Set<Offer> signs;
 
 
     public User(String login, String pass, String firstName, String lastName, Boolean vendorFlag) {
@@ -39,36 +40,7 @@ public class User {
         this.vendorFlag = vendorFlag;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public List<Offer> getSigns() {
-        return signs;
-    }
-
-    public void setSigns(List<Offer> signs) {
-        this.signs = signs;
-    }
-
-    public List<Offer> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<Offer> offers) {
-        this.offers = offers;
+    public User() {
     }
 
     public Integer getId() {
@@ -77,6 +49,22 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public String getFirstName() {
@@ -103,14 +91,27 @@ public class User {
         this.vendorFlag = vendorFlag;
     }
 
-    public List<User> getVendors() {
+    public Set<User> getVendors() {
         return vendors;
     }
 
-    public void setVendors(List<User> vendors) {
+    public void setVendors(Set<User> vendors) {
         this.vendors = vendors;
     }
 
-    public User() {
+    public Set<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(Set<Offer> offers) {
+        this.offers = offers;
+    }
+
+    public Set<Offer> getSigns() {
+        return signs;
+    }
+
+    public void setSigns(Set<Offer> signs) {
+        this.signs = signs;
     }
 }
