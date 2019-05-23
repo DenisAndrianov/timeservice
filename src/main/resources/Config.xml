@@ -24,7 +24,7 @@
                 <prop key="hibernate.connection.driver_class">org.postgresql.Driver</prop>
                 <!--prop key="hibernate.globally_quoted_identifiers">true</prop-->
                 <prop key="hibernate.c3p0.min_size">1</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
             </props>
         </property>
     </bean>
