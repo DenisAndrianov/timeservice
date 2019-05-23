@@ -5,7 +5,6 @@ import components.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-
 import java.util.Optional;
 import java.util.Set;
 
@@ -13,5 +12,6 @@ import java.util.Set;
 public interface OfferRepo extends CrudRepository<Offer, Integer> {
 
     Set<Offer> findAllByOwner(Set<User> owners);
-    Optional<Offer> findById (Integer id);
+
+    Optional<Offer> findById(Integer id);
 }

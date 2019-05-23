@@ -1,18 +1,16 @@
 package dbmanagement;
 
-import components.repositories.*;
+import components.repositories.OfferRepo;
+import components.repositories.UserRepo;
 import login.Authentication;
 import login.Registration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
-import spark.Spark;
-import user.UserManage;
 
-import java.util.ArrayList;
-
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.post;
 
 @SpringBootApplication
 @ImportResource("classpath:Config.xml")
@@ -25,16 +23,12 @@ public class Start {
 
 
         post("/reg", (request, response) -> {
-            return Registration.registrationByUser(UserManage.getUserRegister(request.body()));
+            response.body(Registration.registration(request));
+            return null;
         });
 
         get("/auth", (request, response) -> {
-            String r = request.body();
-            String l;
-            String p;
-            l = r.substring(0, r.indexOf("\n"));
-            p = r.substring(r.indexOf("\n" + 1));
-            response.body(Authentication.authentication(l, p));
+            response.body(Authentication.authentication(request));
             return null;
         });
     }

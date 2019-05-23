@@ -1,16 +1,22 @@
 package login;
 
 import components.User;
-import components.repositories.UserRepo;
 import dbmanagement.Start;
+import org.json.JSONObject;
+import spark.Request;
 
 public class Registration {
 
-    public static String registration(String login, String pass, String firstName, String lastName, Boolean vendorFlag) {
-        UserRepo userRepo = Start.context.getBean(UserRepo.class);
-        login = login.toLowerCase();
+    public static String registration(Request request) {
         try {
-            userRepo.save(new User(login, pass, firstName, lastName, vendorFlag));
+            JSONObject json = new JSONObject(request.body());
+            String login = json.getString("login");
+            String pass = json.getString("pass");
+            String firstName = json.getString("firstName");
+            String lastName = json.getString("lastName");
+            boolean vendorFlag = json.getBoolean("vendorFlag");
+            User u = new User(login, pass, firstName, lastName, vendorFlag);
+            Start.UserRepo.save(u);
             return "Successfully";
         } catch (Exception e) {
             return "Error";

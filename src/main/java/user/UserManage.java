@@ -7,9 +7,6 @@ import login.Authentication;
 import org.json.JSONObject;
 import spark.Request;
 
-import java.sql.Timestamp;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 
@@ -57,7 +54,7 @@ public class UserManage {
          "token": token,
          "vendorsId": vendorsId,
      }*/
-    public static JSONObject listOffersByOwners (Request request)  {
+    public static JSONObject listOffersByOwners(Request request) {
         JSONObject json = new JSONObject(request.body());
         String token = json.getString("token");
         Integer userId = Authentication.decodeTokenToUserId(token);
@@ -71,7 +68,7 @@ public class UserManage {
          "token": token,
          "offerId": Integer offerId,
      }*/
-    public static String signOfferByUserId (Request request)    {
+    public static String signOfferByUserId(Request request) {
 
         try {
             JSONObject json = new JSONObject(request.body());
@@ -84,7 +81,7 @@ public class UserManage {
             o.setSign(u);
             Start.UserRepo.save(u);
             Start.OfferRepo.save(o);
-        }   catch (Exception e) {
+        } catch (Exception e) {
             return "Error";
 
         }
@@ -97,7 +94,7 @@ public class UserManage {
          "end": long,
          "note": String,
      }*/
-    public static String createOffer (Request request)  {
+    public static String createOffer(Request request) {
         try {
             JSONObject json = new JSONObject(request.body());
             String token = json.getString("token");
@@ -110,7 +107,7 @@ public class UserManage {
             Long end = json.getLong("end");
             String note = json.getString("note");
             Start.OfferRepo.save(new Offer(u, note, start, end));
-        }   catch (Exception e) {
+        } catch (Exception e) {
             return "Error";
         }
         return "Successfully";
@@ -120,19 +117,19 @@ public class UserManage {
          "token": String,
          "offerId": int,
      }*/
-    public static String deleteOffer (Request request)  {
+    public static String deleteOffer(Request request) {
         try {
             JSONObject json = new JSONObject(request.body());
             String token = json.getString("token");
             Integer userId = Authentication.decodeTokenToUserId(token);
             User u = Start.UserRepo.findById(userId).get();
             Offer o = Start.OfferRepo.findById(json.getInt("offerId")).get();
-            if (o.getOwner()==u){
+            if (o.getOwner() == u) {
                 Start.OfferRepo.delete(o);
                 return "Successfully";
             }
             throw new Exception();
-        }   catch (Exception e) {
+        } catch (Exception e) {
             return "Error";
         }
     }

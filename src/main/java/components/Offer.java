@@ -1,10 +1,9 @@
 package components;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
-@Table (name = "offers")
+@Table(name = "offers")
 public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
